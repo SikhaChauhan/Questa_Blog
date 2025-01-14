@@ -78,14 +78,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
-// app.use(express.static(path.join(__dirname, 'public'), {
-//   setHeaders: (res, filePath) => {
-//       if (filePath.endsWith('.js')) {
-//         res.setHeader('Content-Type', 'application/javascript'); 
-//       }
-//   }
-// }));
+// app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.js')) {
+        res.setHeader('Content-Type', 'application/javascript'); 
+      }
+  }
+}));
 
 
 app.get('*', (req, res) => {
